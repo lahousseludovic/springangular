@@ -10,6 +10,7 @@ import { PersonnesService } from '../personnes.service';
 export class PersonneComponent implements OnInit {
 
   personne: Personne[];
+  public valide: boolean = false;
 
   private async getAllPersonne() {
    const result =  await this.personneService.getPersonne();
@@ -19,19 +20,24 @@ export class PersonneComponent implements OnInit {
   }
 
   private async deletePersonne(personne: Personne) {
-   this.personne = this.personne.filter(h => h !== personne);
+    this.personne = this.personne.filter(h => h !== personne);
     this.personneService.deletePersonne(personne);
   }
 
-  add(nom: string, prenom: string, age: number ){
-       this.personneService.addPersonne(nom, prenom,age);
-       this.getAllPersonne();
+  async add(nom: string, prenom: string, age: number ){
+    this.personne = [];
+    this.valide = false;
+    await this.personneService.addPersonne(nom, prenom,age);
+    this.getAllPersonne();
+  }
+
+  valid(){
+    this.valide = true;
   }
 
   constructor(private personneService: PersonnesService) { }
 
-  ngOnInit() {
-   
+  ngOnInit() { 
   }
 
 }

@@ -15,8 +15,8 @@
     </ul>
 
     <div>
-        <h2>Ajoutez une nouvelle personne en base</h2>
-        <div>
+        <button (click)="valid()"><h2>Click here to add a new person</h2></button>
+        <div *ngIf="valide">
             <label>nom : <input #personneNom/></label>
             <br>
             <label>Prénom : <input #personnePrenom/></label>
