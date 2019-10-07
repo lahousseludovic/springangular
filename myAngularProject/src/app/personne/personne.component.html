@@ -1,0 +1,29 @@
+<h2>Mon application Angular</h2>
+<button (click)="getAllPersonne()">Click to display all personnes</button>
+
+<div *ngIf="personne">
+    <h2>Mes personnes en base à afficher</h2>
+    <ul>
+        <li *ngFor="let p of personne">
+            <a routerLink="/detail/{{ p.id }}">
+                {{p.nom}}
+                {{p.prenom}}
+                {{p.age}}
+            </a>
+            <button (click)="deletePersonne(p)">detete</button>
+        </li>
+    </ul>
+
+    <div>
+        <h2>Ajoutez une nouvelle personne en base</h2>
+        <div>
+            <label>nom : <input #personneNom/></label>
+            <br>
+            <label>Prénom : <input #personnePrenom/></label>
+            <br>
+            <label>Age : <input #personneAge/></label>
+            <br>
+            <button (click)="add(personneNom.value, personnePrenom.value, personneAge.value); personneNom.value=''; personnePrenom.value=''; personneAge.value='' ">add</button>
+        </div>
+    </div>
+</div>

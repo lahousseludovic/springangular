@@ -1,0 +1,15 @@
+<div *ngIf="personne">
+
+    <h2>Voici les détails de cette personne :</h2>
+        
+        <label>Nom : <input [(ngModel)]="personne.nom" ></label>
+    <br>
+        <label>Prénom : <input [(ngModel)]="personne.prenom" ></label>
+    <br>
+        <label>Age : <input [(ngModel)]="personne.age" ></label>
+
+        <div>
+            <button (click)="update()">Valider changement</button>
+            <button (click)="goBack()">Go Back</button>
+        </div>
+</div>
