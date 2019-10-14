@@ -1,4 +1,4 @@
-package com.projet.business.dto;
+package com.projet.dto;
 
 public class PersonneDTO {
 

@@ -1,11 +1,8 @@
-package com.projet.business.dto.transformer;
+package com.projet.dto.transformer;
 
-import com.projet.business.dto.PersonneDTO;
+import com.projet.dto.PersonneDTO;
 import com.projet.persistance.entity.Personne;
-import org.springframework.context.annotation.Bean;
-import org.springframework.http.converter.json.GsonBuilderUtils;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

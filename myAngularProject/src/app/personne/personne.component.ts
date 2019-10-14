@@ -13,7 +13,7 @@ export class PersonneComponent implements OnInit {
   public valide: boolean = false;
 
   private async getAllPersonne() {
-   const result =  await this.personneService.getPersonne();
+   const result = await this.personneService.getPersonne();
    if(result.length !== 0) {
     this.personne = result;
    }
@@ -25,10 +25,14 @@ export class PersonneComponent implements OnInit {
   }
 
   async add(nom: string, prenom: string, age: number ){
-    this.personne = [];
     this.valide = false;
-    await this.personneService.addPersonne(nom, prenom,age);
-    this.getAllPersonne();
+    if(nom.trim() && prenom.trim() && age !== null){
+      this.personne = [];
+      const result = await this.personneService.addPersonne(nom, prenom,age);
+      if(result.id !== null){
+       this.getAllPersonne();
+      }
+    }
   }
 
   valid(){

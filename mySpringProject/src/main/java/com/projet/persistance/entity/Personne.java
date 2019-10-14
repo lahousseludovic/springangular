@@ -34,7 +34,7 @@ public class Personne {
     }
 
     public String getNom() {
-        return nom;
+        return nom.toUpperCase();
     }
 
     public void setNom(String nom) {
@@ -42,7 +42,7 @@ public class Personne {
     }
 
     public String getPrenom() {
-        return prenom;
+        return prenom.replace(prenom.charAt(0),Character.toUpperCase(prenom.charAt(0)));
     }
 
     public void setPrenom(String prenom) {

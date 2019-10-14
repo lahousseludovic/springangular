@@ -1,7 +1,7 @@
 package com.projet.business;
 
-import com.projet.business.dto.PersonneDTO;
-import com.projet.business.dto.transformer.PersonneTransformer;
+import com.projet.dto.PersonneDTO;
+import com.projet.dto.transformer.PersonneTransformer;
 import com.projet.persistance.entity.Personne;
 import com.projet.persistance.repository.PersonneRepository;
 import org.springframework.beans.factory.annotation.Autowired;

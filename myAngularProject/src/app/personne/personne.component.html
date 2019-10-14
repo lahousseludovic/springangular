@@ -1,7 +1,7 @@
 <h2>Mon application Angular</h2>
-<button (click)="getAllPersonne()">Click to display all personnes</button>
+<button (click)="getAllPersonne()"><h3>Click to display all personnes</h3></button>
 
-<div *ngIf="personne">
+<div *ngIf="personne" class="info">
     <h2>Mes personnes en base à afficher</h2>
     <ul>
         <li *ngFor="let p of personne">
@@ -10,12 +10,12 @@
                 {{p.prenom}}
                 {{p.age}}
             </a>
-            <button (click)="deletePersonne(p)">detete</button>
+                <button (click)="deletePersonne(p)">delete</button>
         </li>
     </ul>
 
     <div>
-        <button (click)="valid()"><h2>Click here to add a new person</h2></button>
+        <button (click)="valid()"><h3>Click here to add a new person</h3></button>
         <div *ngIf="valide">
             <label>nom : <input #personneNom/></label>
             <br>
@@ -23,7 +23,7 @@
             <br>
             <label>Age : <input #personneAge/></label>
             <br>
-            <button (click)="add(personneNom.value, personnePrenom.value, personneAge.value); personneNom.value=''; personnePrenom.value=''; personneAge.value='' ">add</button>
+            <button (click)="add(personneNom.value, personnePrenom.value, personneAge.value); personneNom.value=''; personnePrenom.value=''; personneAge.value='';">add</button>
         </div>
     </div>
 </div>
