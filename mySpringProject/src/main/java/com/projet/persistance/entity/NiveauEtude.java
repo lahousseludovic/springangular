@@ -4,12 +4,12 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="niveau_etude")
+
 public class NiveauEtude {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_niveau", columnDefinition = "serial")
+    @Column(columnDefinition = "serial")
     private long id;
 
     @NotNull

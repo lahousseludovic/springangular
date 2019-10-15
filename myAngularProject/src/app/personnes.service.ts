@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Personne } from './personne';
 import { HttpHeaders } from '@angular/common/http';
+import { NiveauEtude } from './niveauEtude';
 
 
 const httpOptions = {
@@ -35,15 +36,16 @@ export class PersonnesService {
 
   /** UPDATE Personne from the server */
   public update(personne: Personne): Promise<Personne> {
-    if(personne.nom.trim() && personne.prenom.trim() && personne.age !== 0){
+
+    if(personne.nom.trim() && personne.prenom.trim() && personne.age != 0 && personne.age != null){
       return this.http.put<Personne>(`${this.urlApi}/update`,personne, httpOptions).toPromise();
     }
   }
 
   /** CREATE Personne from the server */
-  public addPersonne(nom: string, prenom: string, age: number): Promise<Personne>{
+  public addPersonne(nom: string, prenom: string, age: number, niveauEtude: NiveauEtude): Promise<Personne>{
     if(nom.trim() && prenom.trim() && age !== 0){
-      const personne: Personne =  new Personne(nom,prenom,age);
+      const personne: Personne =  new Personne(nom,prenom,age,niveauEtude);
       return this.http.post<Personne>(`${this.urlApi}/add`, personne, httpOptions).toPromise();
     }
   }

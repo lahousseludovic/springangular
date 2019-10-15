@@ -10,5 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NiveauEtudeRepository extends CrudRepository<NiveauEtude, Long> {
 
-
+    NiveauEtude findByLibelle(String libelle);
 }

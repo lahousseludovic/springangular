@@ -1,7 +1,5 @@
 package com.projet.persistance.entity;
 
-import org.springframework.lang.Nullable;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -15,7 +13,7 @@ public class Personne {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_personne", columnDefinition = "serial")
+    @Column(columnDefinition = "serial")
     private Long id;
 
     @NotNull
@@ -27,8 +25,9 @@ public class Personne {
     @NotNull
     private int age;
 
-    @Nullable()
-    @OneToOne
+    //Plusieurs personnes peuvent avoir le même niveau d'étude
+    @ManyToOne
+    @JoinColumn(name="id_niveau_etude", referencedColumnName = "id", insertable = true, updatable = true)
     private NiveauEtude niveauEtude;
 
     public Long getId() {
@@ -49,7 +48,7 @@ public class Personne {
 
     public String getPrenom() {
         prenom = prenom.toLowerCase();
-        return prenom.replace(prenom.charAt(0),Character.toUpperCase(prenom.charAt(0)));
+        return prenom.replaceFirst(prenom.charAt(0)+"",(prenom.charAt(0)+"").toUpperCase());
     }
 
     public void setPrenom(String prenom) {

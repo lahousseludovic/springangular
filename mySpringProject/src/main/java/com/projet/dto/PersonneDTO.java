@@ -31,7 +31,7 @@ public class PersonneDTO {
     }
 
     public String getPrenom() {
-        return prenom;
+       return prenom;
     }
 
     public void setPrenom(String prenom) {

@@ -4,12 +4,18 @@ import com.projet.dto.NiveauEtudeDTO;
 import com.projet.dto.PersonneDTO;
 import com.projet.persistance.entity.NiveauEtude;
 import com.projet.persistance.entity.Personne;
+import com.projet.persistance.repository.NiveauEtudeRepository;
+import com.projet.persistance.repository.PersonneRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 public class PersonneTransformer {
+
+    @Autowired
+    NiveauEtudeRepository niveauEtudeRepository;
 
     public static Collection<PersonneDTO> entityToDto(Collection<Personne> personneCollection){
 
@@ -62,10 +68,10 @@ public class PersonneTransformer {
         personne.setPrenom(personneDTO.getPrenom());
         personne.setAge(personneDTO.getAge());
 
-        if(personneDTO.getNiveau_etude() != null) {
+        /*if(personneDTO.getNiveau_etude() != null) {
             NiveauEtude niveauEtude = NiveauEtudeTransformer.dtoToEntity(personneDTO.getNiveau_etude());
             personne.setNiveauEtude(niveauEtude);
-        }
+        }*/
 
         return personne;
     }

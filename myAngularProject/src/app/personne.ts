@@ -1,3 +1,5 @@
+import { NiveauEtude } from './niveauEtude';
+
 export class Personne{
     public id: number;
     
@@ -6,6 +8,7 @@ export class Personne{
         public nom: string,
         public prenom: string,
         public age: number,
+        public niveauEtude: NiveauEtude
 
     ){}
 }

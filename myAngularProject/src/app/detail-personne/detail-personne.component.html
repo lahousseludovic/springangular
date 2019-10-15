@@ -7,9 +7,10 @@
         <label>Prénom : <input [(ngModel)]="personne.prenom" ></label>
     <br>
         <label>Age : <input [(ngModel)]="personne.age" ></label>
-
+    <br>
+        <label>Niveau d'étude : <input [(ngModel)]="personne.niveau_etude.libelle" ></label>
         <div>
-            <button (click)="update()">Valider changement</button>
+            <button (click)="update(); goBack()">Valider changement</button>
             <button (click)="goBack()">Go Back</button>
         </div>
 </div>

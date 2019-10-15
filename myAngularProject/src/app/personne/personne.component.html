@@ -17,13 +17,16 @@
     <div>
         <button (click)="valid()"><h3>Click here to add a new person</h3></button>
         <div *ngIf="valide">
+            <br>
             <label>nom : <input #personneNom/></label>
             <br>
             <label>Prénom : <input #personnePrenom/></label>
             <br>
             <label>Age : <input #personneAge/></label>
             <br>
-            <button (click)="add(personneNom.value, personnePrenom.value, personneAge.value); personneNom.value=''; personnePrenom.value=''; personneAge.value='';">add</button>
+            <label>Niveau d'étude : <input #personneNiveau/></label>
+            <br>
+            <button (click)="add(personneNom.value, personnePrenom.value, personneAge.value, personneNiveau.value); personneNom.value=''; personnePrenom.value=''; personneAge.value=''; personneNiveau.value='';">add</button>
         </div>
     </div>
 </div>

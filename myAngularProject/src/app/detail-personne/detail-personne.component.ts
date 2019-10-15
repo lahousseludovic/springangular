@@ -3,6 +3,7 @@ import { Personne } from '../personne';
 import { ActivatedRoute } from '@angular/router';
 import { PersonnesService } from '../personnes.service';
 import { Location } from '@angular/common';
+import { NiveauEtude } from '../niveauEtude';
 
 @Component({
   selector: 'app-detail-personne',
@@ -18,8 +19,8 @@ export class DetailPersonneComponent implements OnInit {
     this.personneService.getPersonneById(id)
     .then(res => 
       {
-      this.personne = res
-    });
+      this.personne = res;
+      })
   }
 
   update(): void {

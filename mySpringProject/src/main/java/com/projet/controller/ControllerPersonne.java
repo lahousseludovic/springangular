@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 import java.util.List;
 
 @RestController
@@ -18,8 +19,7 @@ public class ControllerPersonne {
 
     @GetMapping("")
     public List<PersonneDTO> getAll(){
-       List<PersonneDTO> personneDTOList = personneBusiness.getAll();
-        return personneDTOList;
+      return personneBusiness.getAll();
     }
 
     @GetMapping("/{id}")
@@ -28,19 +28,27 @@ public class ControllerPersonne {
         return personneDTO;
     }
 
+    @GetMapping("/etude/{niveau_etude}")
+    public Collection<PersonneDTO> getByNiveauEtude(@PathVariable("niveau_etude") @NotNull String niveau_etude ){
+        return personneBusiness.findByNiveauEtude(niveau_etude);
+    }
+
     @PutMapping("/update")
     public PersonneDTO update(@RequestBody PersonneDTO personneDTO){
+
         return personneBusiness.update(personneDTO);
     }
 
 
     @DeleteMapping("/delete/{id}")
     public void deleteById(@NotNull @PathVariable("id") Long id) {
+
         personneBusiness.deleteById(id);
     }
 
     @PostMapping("/add")
     public PersonneDTO add(@RequestBody PersonneDTO personneDTO) {
+
         return personneBusiness.add(personneDTO);
     }
 }
