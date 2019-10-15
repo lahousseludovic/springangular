@@ -10,6 +10,8 @@ public class PersonneDTO {
 
     private int age;
 
+    private NiveauEtudeDTO niveau_etude;
+
     public PersonneDTO(String nom, String prenom, int age){
         this.nom = nom;
         this.prenom = prenom;
@@ -50,5 +52,13 @@ public class PersonneDTO {
 
     public void setNom(String nom) {
         this.nom = nom;
+    }
+
+    public NiveauEtudeDTO getNiveau_etude() {
+        return niveau_etude;
+    }
+
+    public void setNiveau_etude(NiveauEtudeDTO niveau_etude) {
+        this.niveau_etude = niveau_etude;
     }
 }

@@ -1,6 +1,8 @@
 package com.projet.dto.transformer;
 
+import com.projet.dto.NiveauEtudeDTO;
 import com.projet.dto.PersonneDTO;
+import com.projet.persistance.entity.NiveauEtude;
 import com.projet.persistance.entity.Personne;
 
 import java.util.ArrayList;
@@ -31,6 +33,11 @@ public class PersonneTransformer {
         personneDTO.setPrenom(personne.getPrenom());
         personneDTO.setAge(personne.getAge());
 
+        if(personne.getNiveauEtude() != null) {
+            NiveauEtudeDTO niveauEtudeDTO = NiveauEtudeTransformer.entityToDto(personne.getNiveauEtude());
+            personneDTO.setNiveau_etude(niveauEtudeDTO);
+        }
+
         return personneDTO;
     }
 
@@ -51,14 +58,14 @@ public class PersonneTransformer {
             return null;
 
         Personne personne = new Personne();
-//        if (personneDTO.getId() == null) {
-//            personne.setId(0L);
-//        } else {
-//            personne.setId(personneDTO.getId());
-//        }
         personne.setNom(personneDTO.getNom());
         personne.setPrenom(personneDTO.getPrenom());
         personne.setAge(personneDTO.getAge());
+
+        if(personneDTO.getNiveau_etude() != null) {
+            NiveauEtude niveauEtude = NiveauEtudeTransformer.dtoToEntity(personneDTO.getNiveau_etude());
+            personne.setNiveauEtude(niveauEtude);
+        }
 
         return personne;
     }
