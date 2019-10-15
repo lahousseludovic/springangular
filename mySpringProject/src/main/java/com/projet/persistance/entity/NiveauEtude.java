@@ -24,7 +24,8 @@ public class NiveauEtude {
     }
 
     public String getLibelle() {
-        return libelle;
+        libelle = libelle.toLowerCase();
+        return libelle.replace(libelle.charAt(0), Character.toUpperCase(libelle.charAt(0)));
     }
 
     public void setLibelle(String libelle) {
