@@ -27,6 +27,7 @@ public class NiveauEtudeDTO {
     }
 
     public void setLibelle(String libelle) {
-        this.libelle = libelle;
+        this.libelle = libelle.toLowerCase();
+        this.libelle = libelle.replaceFirst(libelle.charAt(0)+"",(libelle.charAt(0)+"").toUpperCase());
     }
 }

@@ -20,6 +20,7 @@ export class DetailPersonneComponent implements OnInit {
     .then(res => 
       {
       this.personne = res;
+      console.log(this.personne);
       })
   }
 

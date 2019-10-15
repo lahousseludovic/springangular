@@ -13,6 +13,7 @@ public class NiveauEtude {
     private long id;
 
     @NotNull
+    //FINIR ICI POUR REGLER LE PROBLEME
     private String libelle;
 
     public long getId() {

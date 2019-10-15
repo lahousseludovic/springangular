@@ -1,5 +1,7 @@
 package com.projet.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class PersonneDTO {
 
     private Long id;
@@ -54,10 +56,12 @@ public class PersonneDTO {
         this.nom = nom;
     }
 
+    /*@JsonProperty("niveau_etude")*/
     public NiveauEtudeDTO getNiveau_etude() {
         return niveau_etude;
     }
 
+    @JsonProperty("niveauEtude")
     public void setNiveau_etude(NiveauEtudeDTO niveau_etude) {
         this.niveau_etude = niveau_etude;
     }

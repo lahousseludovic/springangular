@@ -51,6 +51,8 @@ public class PersonneBusiness {
 
     public PersonneDTO add(PersonneDTO personneDTO) {
         Personne personne = PersonneTransformer.dtoToEntity(personneDTO);
+        if(personneDTO.getNiveau_etude() == null)
+            personneDTO.setNiveau_etude(new NiveauEtudeDTO(""));
         personne.setNiveauEtude(searchNiveauEtude(personneDTO));
         return PersonneTransformer.entityToDto(personneRepository.save(personne));
     }
