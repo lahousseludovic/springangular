@@ -42,6 +42,7 @@ public class Personne {
     }
 
     public String getPrenom() {
+        prenom.toLowerCase();
         return prenom.replace(prenom.charAt(0),Character.toUpperCase(prenom.charAt(0)));
     }
 
