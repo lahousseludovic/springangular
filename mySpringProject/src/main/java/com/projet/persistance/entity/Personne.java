@@ -27,7 +27,7 @@ public class Personne {
 
     //Plusieurs personnes peuvent avoir le même niveau d'étude
     @ManyToOne
-    @JoinColumn(name="id_niveau_etude", referencedColumnName = "id", insertable = true, updatable = true)
+    @JoinColumn(name="id_niveau", referencedColumnName = "id")
     private NiveauEtude niveauEtude;
 
     public Long getId() {

@@ -51,8 +51,6 @@ public class PersonneBusiness {
 
     public PersonneDTO add(PersonneDTO personneDTO) {
         Personne personne = PersonneTransformer.dtoToEntity(personneDTO);
-        if(personneDTO.getNiveau_etude() == null)
-            personneDTO.setNiveau_etude(new NiveauEtudeDTO(""));
         personne.setNiveauEtude(searchNiveauEtude(personneDTO));
         return PersonneTransformer.entityToDto(personneRepository.save(personne));
     }
@@ -63,21 +61,18 @@ public class PersonneBusiness {
 
     private NiveauEtude searchNiveauEtude(PersonneDTO personneDTO) {
 
-        if(personneDTO.getNiveau_etude() == null)
+        if (personneDTO.getNiveau_etude().getLibelle().isBlank()) {
             return niveauEtudeRepository.findByLibelle("Aucun");
+        }
 
-        NiveauEtude niveauEtude = niveauEtudeRepository.findByLibelle(personneDTO.getNiveau_etude().getLibelle());
+        String libelle = personneDTO.getNiveau_etude().getLibelle().toLowerCase();
+        libelle = libelle.replaceFirst(libelle.charAt(0)+"", (libelle.charAt(0)+"").toUpperCase());
+        NiveauEtude niveauEtude = niveauEtudeRepository.findByLibelle(libelle);
         if (niveauEtude != null) {
             return niveauEtude;
         }
 
-        if (personneDTO.getNiveau_etude().getLibelle().trim() != "") {
-            NiveauEtudeDTO niveauEtudeDTO = new NiveauEtudeDTO(personneDTO.getNiveau_etude().getLibelle());
-            return niveauEtudeRepository.save(NiveauEtudeTransformer.dtoToEntity(niveauEtudeDTO));
-        }
-
-        niveauEtude = niveauEtudeRepository.findByLibelle("Aucun");
-        return niveauEtudeRepository.save(niveauEtude);
-
+        NiveauEtudeDTO niveauEtudeDTO = new NiveauEtudeDTO(libelle);
+        return niveauEtudeRepository.save(NiveauEtudeTransformer.dtoToEntity(niveauEtudeDTO));
     }
 }

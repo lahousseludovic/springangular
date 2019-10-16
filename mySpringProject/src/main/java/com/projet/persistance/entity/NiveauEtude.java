@@ -13,7 +13,6 @@ public class NiveauEtude {
     private long id;
 
     @NotNull
-    //FINIR ICI POUR REGLER LE PROBLEME
     private String libelle;
 
     public long getId() {
@@ -26,10 +25,13 @@ public class NiveauEtude {
 
     public String getLibelle() {
         libelle = libelle.toLowerCase();
-        return libelle.replace(libelle.charAt(0), Character.toUpperCase(libelle.charAt(0)));
+        libelle = libelle.replaceFirst(libelle.charAt(0)+"", (libelle.charAt(0)+"").toUpperCase());
+
+        return libelle;
     }
 
     public void setLibelle(String libelle) {
-        this.libelle = libelle;
+        libelle = libelle.toLowerCase();
+        this.libelle = libelle.replaceFirst(libelle.charAt(0)+"", (libelle.charAt(0)+"").toUpperCase());
     }
 }

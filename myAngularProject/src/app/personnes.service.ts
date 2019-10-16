@@ -43,10 +43,9 @@ export class PersonnesService {
   }
 
   /** CREATE Personne from the server */
-  public addPersonne(nom: string, prenom: string, age: number, niveau: String): Promise<Personne>{
-    if(nom.trim() && prenom.trim() && age !== 0){
+  public addPersonne(nom: string, prenom: string, age: number, niveau: string): Promise<Personne>{
+    if(nom.trim() && prenom.trim() && age !== null){
       const niveauEtude: NiveauEtude = new NiveauEtude(niveau);
-      console.log(niveauEtude);
       const personne: Personne =  new Personne(nom,prenom,age,niveauEtude);
       console.log(personne);
       return this.http.post<Personne>(`${this.urlApi}/add`, personne, httpOptions).toPromise();

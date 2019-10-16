@@ -1,15 +1,28 @@
 drop table if exists personne;
+drop table if exists niveau_etude;
 
+CREATE TABLE niveau_etude (
+    id SERIAL,
+    libelle TEXT NOT NULL,
+    PRIMARY KEY(id)
+);
 
 CREATE TABLE personne (
-    id_personne SERIAL,
+    id SERIAL,
     nom TEXT NOT NULL,
     prenom TEXT NOT NULL,
     age int NOT NULL,
-    PRIMARY KEY(id_personne)
+    id_niveau Integer,
+    PRIMARY KEY(id),
+    FOREIGN KEY(id_niveau) REFERENCES niveau_etude(id) on delete cascade
 );
 
-INSERT INTO personne(nom, prenom, age) VALUES ('Ludovic','Lahousse', 31);
-INSERT INTO personne(nom, prenom, age) VALUES ('Antoine','Jouve', 24);
-INSERT INTO personne(nom, prenom, age) VALUES ('Abbas','Attaf', 25);
-INSERT INTO personne(nom, prenom, age) VALUES ('Arthur','Brandao', 23);
+INSERT INTO niveau_etude(libelle) VALUES ('Master');
+INSERT INTO niveau_etude(libelle) VALUES ('Licence');
+INSERT INTO niveau_etude(libelle) VALUES ('Dut');
+INSERT INTO niveau_etude(libelle) VALUES ('Aucun');
+
+INSERT INTO personne(nom, prenom, age, id_niveau) VALUES ('Ludovic','Lahousse', 31,3);
+INSERT INTO personne(nom, prenom, age, id_niveau) VALUES ('Antoine','Jouve', 24,2);
+INSERT INTO personne(nom, prenom, age, id_niveau) VALUES ('Abbas','Attaf', 25,2);
+INSERT INTO personne(nom, prenom, age, id_niveau) VALUES ('Arthur','Brandao', 23,1);

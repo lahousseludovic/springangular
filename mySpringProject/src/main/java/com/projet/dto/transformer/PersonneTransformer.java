@@ -68,11 +68,6 @@ public class PersonneTransformer {
         personne.setPrenom(personneDTO.getPrenom());
         personne.setAge(personneDTO.getAge());
 
-        /*if(personneDTO.getNiveau_etude() != null) {
-            NiveauEtude niveauEtude = NiveauEtudeTransformer.dtoToEntity(personneDTO.getNiveau_etude());
-            personne.setNiveauEtude(niveauEtude);
-        }*/
-
         return personne;
     }
 }

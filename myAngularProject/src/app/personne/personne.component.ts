@@ -25,7 +25,7 @@ export class PersonneComponent implements OnInit {
     this.personneService.deletePersonne(personne);
   }
 
-  async add(nom: string, prenom: string, age: number, niveauEtude: String ){
+  async add(nom: string, prenom: string, age: number, niveauEtude: string){
     this.valide = false;
     if(nom.trim() && prenom.trim() && age !== null){
       this.personne = [];
