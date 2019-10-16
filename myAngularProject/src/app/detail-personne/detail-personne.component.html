@@ -10,7 +10,9 @@
     <br>
         <label>Niveau d'étude : <input [(ngModel)]="personne.niveauEtude.libelle" ></label>
         <div>
-            <button (click)="update(); goBack()">Valider changement</button>
-            <button (click)="goBack()">Go Back</button>
+            <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+                <mat-button-toggle (click)="update(); goBack()">Valid change</mat-button-toggle>
+                <mat-button-toggle (click)="goBack()">Go Back</mat-button-toggle>
+            </mat-button-toggle-group> 
         </div>
 </div>

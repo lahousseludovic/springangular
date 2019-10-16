@@ -1,32 +1,61 @@
-<h2>Mon application Angular</h2>
-<button (click)="getAllPersonne()"><h3>Click to display all personnes</h3></button>
-
-<div *ngIf="personne" class="info">
-    <h2>Mes personnes en base à afficher</h2>
-    <ul>
-        <li *ngFor="let p of personne">
-            <a routerLink="/detail/{{ p.id }}">
-                {{p.nom}}
-                {{p.prenom}}
-                {{p.age}}
-            </a>
-                <button (click)="deletePersonne(p)">delete</button>
-        </li>
-    </ul>
-
-    <div>
-        <button (click)="valid()"><h3>Click here to add a new person</h3></button>
-        <div *ngIf="valide">
-            <br>
-            <label>nom : <input #personneNom/></label>
-            <br>
-            <label>Prénom : <input #personnePrenom/></label>
-            <br>
-            <label>Age : <input #personneAge/></label>
-            <br>
-            <label>Niveau d'étude : <input #personneNiveau/></label>
-            <br>
-            <button (click)="add(personneNom.value, personnePrenom.value, personneAge.value, personneNiveau.value); personneNom.value=''; personnePrenom.value=''; personneAge.value=''; personneNiveau.value='';">add</button>
-        </div>
+<div class="outterDiv">
+    <div class="allbutton">
+        <button mat-raised-button (click)="getAllPersonne()">
+            Click here to display all personnes
+        </button>
     </div>
+    <div *ngIf="personne">
+
+        <h2>Mes personnes en base sont :</h2>
+      
+        <mat-nav-list class= "maListe">
+            <mat-list-item *ngFor="let p of personne">
+                <a routerLink="/detail/{{ p.id }}">{{ p.nom }} {{ p.prenom }} {{ p.age }}</a>
+                <button mat-icon-button (click)="deletePersonne(p)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-list-item>
+        </mat-nav-list>
+    
+        <button mat-raised-button (click)="valid()">
+            Click here to add a new person
+        </button>
+
+
+        <div *ngIf="valide">
+            <p>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Nom</mat-label>
+                    <input #personneNom matInput placeholder="">
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Prénom</mat-label>
+                    <input #personnePrenom matInput placeholder="">
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Age</mat-label>
+                    <input #personneAge matInput placeholder="">
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Niveau</mat-label>
+                    <input #personneNiveau matInput placeholder="">
+                    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                </mat-form-field>
+            </p>
+            <p>
+                <button mat-fab (click)="add(personneNom.value, personnePrenom.value, personneAge.value, personneNiveau.value); personneNom.value=''; personnePrenom.value=''; personneAge.value=''; personneNiveau.value='';">Send</button>
+            </p>
+        </div>
+
+    </div>
+
 </div>

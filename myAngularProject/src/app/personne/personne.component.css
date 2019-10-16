@@ -1,12 +1,9 @@
+  .outterDiv {
+      margin-top: 2%;
+      text-align: center;
+      width: 100%;
+  }
 
-
-li {
-    list-style-type: square;
-    /*font-family: Verdana, Geneva, Tahoma, sans-serif;*/
-}
-
-a {
-    margin-right: 30px;
-    text-decoration: none;
-    color: red
-}
+  mat-nav-list {
+  
+  }

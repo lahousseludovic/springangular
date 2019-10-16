@@ -1,0 +1,10 @@
+body{
+	width:800px;
+	margin:auto;
+	background-color:black;
+}
+
+nav {
+    display: block;
+    text-align: center !important;
+}
