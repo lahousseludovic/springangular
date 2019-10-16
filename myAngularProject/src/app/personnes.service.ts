@@ -47,7 +47,6 @@ export class PersonnesService {
     if(nom.trim() && prenom.trim() && age !== null){
       const niveauEtude: NiveauEtude = new NiveauEtude(niveau);
       const personne: Personne =  new Personne(nom,prenom,age,niveauEtude);
-      console.log(personne);
       return this.http.post<Personne>(`${this.urlApi}/add`, personne, httpOptions).toPromise();
     }
   }

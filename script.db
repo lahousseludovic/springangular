@@ -1,5 +1,5 @@
-drop table if exists personne;
-drop table if exists niveau_etude;
+drop table if exists personne cascade;
+drop table if exists niveau_etude cascade;
 
 CREATE TABLE niveau_etude (
     id SERIAL,
@@ -14,7 +14,7 @@ CREATE TABLE personne (
     age int NOT NULL,
     id_niveau Integer,
     PRIMARY KEY(id),
-    FOREIGN KEY(id_niveau) REFERENCES niveau_etude(id) on delete cascade
+    FOREIGN KEY(id_niveau) REFERENCES niveau_etude(id) on delete set null
 );
 
 INSERT INTO niveau_etude(libelle) VALUES ('Master');
@@ -26,3 +26,7 @@ INSERT INTO personne(nom, prenom, age, id_niveau) VALUES ('Ludovic','Lahousse', 
 INSERT INTO personne(nom, prenom, age, id_niveau) VALUES ('Antoine','Jouve', 24,2);
 INSERT INTO personne(nom, prenom, age, id_niveau) VALUES ('Abbas','Attaf', 25,2);
 INSERT INTO personne(nom, prenom, age, id_niveau) VALUES ('Arthur','Brandao', 23,1);
+
+DROP RULE if exists r1 on niveau_etude;
+
+CREATE RULE r1 as on delete to niveau_etude do also update personne set id_niveau=(select id from niveau_etude where libelle='Aucun') where id_niveau = OlD.id;
