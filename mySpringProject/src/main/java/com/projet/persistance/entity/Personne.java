@@ -43,7 +43,8 @@ public class Personne {
     }
 
     public void setNom(String nom) {
-        this.nom = nom;
+        nom = nom.toLowerCase();
+        this.nom = nom.replaceFirst((nom.charAt(0)+""), (nom.charAt(0)+"").toUpperCase());
     }
 
     public String getPrenom() {
@@ -52,7 +53,8 @@ public class Personne {
     }
 
     public void setPrenom(String prenom) {
-        this.prenom = prenom;
+        prenom = prenom.toLowerCase();
+        this.prenom = prenom.replaceFirst((prenom.charAt(0)+""), (prenom.charAt(0)+"").toUpperCase());
     }
 
     public int getAge() {
