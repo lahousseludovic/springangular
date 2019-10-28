@@ -19,13 +19,15 @@ CREATE TABLE personne (
 );
 
 INSERT INTO niveau_etude(libelle) VALUES ('Master');
-INSERT INTO niveau_etude(libelle) VALUES ('Licence');
+INSERT INTO niveau_etude(libelle) VALUES ('Licence Pro');
 INSERT INTO niveau_etude(libelle) VALUES ('Dut');
+INSERT INTO niveau_etude(libelle) VALUES ('Bts');
+INSERT INTO niveau_etude(libelle) VALUES ('Autre');
 INSERT INTO niveau_etude(libelle) VALUES ('Aucun');
 
-INSERT INTO personne(prenom, nom, age, id_niveau) VALUES ('Ludovic','Lahousse', 31,3);
-INSERT INTO personne(prenom, nom, age, id_niveau) VALUES ('Antoine','Jouve', 24,2);
+INSERT INTO personne(prenom, nom, age, id_niveau) VALUES ('Ludovic','Lahousse', 31,2);
+INSERT INTO personne(prenom, nom, age, id_niveau) VALUES ('Antoine','Jouve', 24,1);
 INSERT INTO personne(prenom, nom, age, id_niveau) VALUES ('Abbas','Attaf', 25,2);
-INSERT INTO personne(prenom, nom, age, id_niveau) VALUES ('Arthur','Brandao', 23,1);
+INSERT INTO personne(prenom, nom, age, id_niveau) VALUES ('Arthur','Brandao', 23,5);
 
 CREATE RULE rule_delete as on delete to niveau_etude do also update personne set id_niveau=(select id from niveau_etude where libelle='Aucun') where id_niveau = OlD.id;

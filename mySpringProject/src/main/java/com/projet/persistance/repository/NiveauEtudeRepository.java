@@ -4,6 +4,8 @@ import com.projet.persistance.entity.NiveauEtude;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
+
 /**
  * Interface permettant de communiquer avec la base de données pour la table niveau_etude.
  */
@@ -11,4 +13,6 @@ import org.springframework.stereotype.Repository;
 public interface NiveauEtudeRepository extends CrudRepository<NiveauEtude, Long> {
 
     NiveauEtude findByLibelle(String libelle);
+
+    Collection<NiveauEtude> findAll();
 }
