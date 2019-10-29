@@ -59,7 +59,7 @@
             <p>
                 <mat-form-field appearance="legacy">
                     <mat-label>Nom</mat-label>
-                    <input #nom matInput placeholder="">
+                    <input #nom matInput placeholder="" [formControl]="infos" required>
                     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                 </mat-form-field>
             </p>
@@ -67,6 +67,7 @@
                 <mat-form-field appearance="legacy">
                     <mat-label>Prénom</mat-label>
                     <input #prenom matInput placeholder="">
+                    <mat-error *ngIf="infos.invalid">{{getErrorMessage()}}</mat-error>
                     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                 </mat-form-field>
             </p>
@@ -89,7 +90,7 @@
                 </mat-form-field>
             </p>
             <p>
-                <button mat-fab color="green" (click)="add(nom.value, prenom.value, age.value, niv.value); nom.value=''; prenom.value=''; age.value='';niv.value='';">
+                <button mat-fab color="" (click)="add(nom.value, prenom.value, age.value, niv.value); nom.value=''; prenom.value=''; age.value='';niv.value='';">
                     Envoyer
                 </button>
                 <button mat-fab color="warn" (click)="valid()" class="buttonRetour">

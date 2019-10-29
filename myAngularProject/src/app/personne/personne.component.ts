@@ -4,6 +4,7 @@ import { PersonnesService } from '../personnes.service';
 import { NiveauEtude } from '../niveauEtude';
 import { NiveauEtudeService } from '../niveau-etude.service';
 import {MatTableDataSource} from '@angular/material/table';
+import {FormControl, Validators} from '@angular/forms';
 
 export interface PeriodiqueElement {
   position: Number;
@@ -29,6 +30,12 @@ export class PersonneComponent implements OnInit {
   personne: Personne[];
   niveauEtude: NiveauEtude[];
   public valide: boolean = false;
+
+  infos = new FormControl('', [Validators.required]);
+
+  getErrorMessage() {
+    return this.infos.hasError('required') ? 'You must enter a value' :'';
+  }
 
   private async getAllPersonne() {
    const result = await this.personneService.getPersonne();
