@@ -5,7 +5,7 @@ drop table if exists niveau_etude cascade;
 CREATE TABLE niveau_etude (
     id SERIAL,
     libelle TEXT NOT NULL,
-    PRIMARY KEY(id)
+    CONSTRAINT pk_niveau_etude PRIMARY KEY(id)
 );
 
 CREATE TABLE personne (
@@ -14,8 +14,8 @@ CREATE TABLE personne (
     prenom TEXT NOT NULL,
     age int NOT NULL,
     id_niveau Integer,
-    PRIMARY KEY(id),
-    FOREIGN KEY(id_niveau) REFERENCES niveau_etude(id) on delete set null
+    CONSTRAINT pk_personne PRIMARY KEY(id),
+    CONSTRAINT fk_niveau_etude FOREIGN KEY(id_niveau) REFERENCES niveau_etude(id) on delete set null
 );
 
 INSERT INTO niveau_etude(libelle) VALUES ('Master');
