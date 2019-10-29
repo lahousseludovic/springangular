@@ -34,26 +34,25 @@ export class PersonneComponent implements OnInit {
    const result = await this.personneService.getPersonne();
    if(result.length !== 0) {
     this.personne = result;
-    const data = [];
+    ELEMENT_DATA.splice(0,ELEMENT_DATA.length);
     for (const p of this.personne) {
       ELEMENT_DATA.push({position: p.id, name: p.nom, surname: p.prenom, age: p.age, level: p.niveauEtude.libelle, action: p });
     }
-   
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
    }
-   this.valide = true;
   }
 
   private async getAllNiveauEtude() {
     const result = await this.niveauEtudeService.getAll();
     if(result.length !== 0){
       this.niveauEtude = result;
+      this.valide = true;
     }
   }
 
   private async deletePersonne(personne: Personne) {
-    this.personne = this.personne.filter(h => h !== personne);
-    this.personneService.deletePersonne(personne);
+    await this.personneService.deletePersonne(personne);
+    this.getAllPersonne();
   }
 
   async add(nom: string, prenom: string, age: number, niveauEtude: string){

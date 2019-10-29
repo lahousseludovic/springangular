@@ -1,77 +1,59 @@
-<!--<div class="outterDiv">-->
-   <!-- <div class="allbutton">
-        <button mat-raised-button (click)="getAllPersonne()">
-            Click here to display all personnes
-        </button>
-    </div>-->
 
-    <div class="example-container mat-elevation-z8">
-        <table mat-table [dataSource]="dataSource">
-      
+<div class="example-container mat-elevation-z8 champs">
+    <table mat-table [dataSource]="dataSource">
+
         <!-- Position Column -->
-          <ng-container matColumnDef="position">
+        <ng-container matColumnDef="position">
             <th mat-header-cell *matHeaderCellDef> Id. </th>
-            <td mat-cell *matCellDef="let element"> <a href="https://google.com">{{element.position}}</a></td>  
-          </ng-container>
-      
-          <!-- Name Column -->
-          <ng-container matColumnDef="name">
+            <td mat-cell *matCellDef="let element">{{element.position}}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
             <th mat-header-cell *matHeaderCellDef> Nom </th>
             <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-          </ng-container>
-      
-          <!-- Surname Column -->
-          <ng-container matColumnDef="surname">
+        </ng-container>
+
+        <!-- Surname Column -->
+        <ng-container matColumnDef="surname">
             <th mat-header-cell *matHeaderCellDef> Prénom </th>
             <td mat-cell *matCellDef="let element"> {{element.surname}} </td>
-          </ng-container>
-      
-          <!-- Age Column -->
-          <ng-container matColumnDef="age">
+        </ng-container>
+
+        <!-- Age Column -->
+        <ng-container matColumnDef="age">
             <th mat-header-cell *matHeaderCellDef> Age </th>
             <td mat-cell *matCellDef="let element"> {{element.age}} </td>
-          </ng-container>
+        </ng-container>
 
-          <!-- Level Column -->
-          <ng-container matColumnDef="level">
+        <!-- Level Column -->
+        <ng-container matColumnDef="level">
             <th mat-header-cell *matHeaderCellDef> Niveau </th>
             <td mat-cell *matCellDef="let element"> {{element.level}} </td>
-          </ng-container>
-      
+        </ng-container>
 
-          <ng-container matColumnDef="action">
+
+        <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef> Action </th>
-            <td mat-cell *matCellDef="let element"> 
-              <button mat-icon-button (click)="deletePersonne(element.action)">
-                <mat-icon>delete</mat-icon>
-              </button>
-            </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-    </div>
-
-   <!-- <div *ngIf="personne">
-
-        <h2>Mes personnes en base sont :</h2>
-      
-        <mat-nav-list class= "maListe">
-            <mat-list-item *ngFor="let p of personne">
-                <a routerLink="/detail/{{ p.id }}">{{ p.nom }} {{ p.prenom }} {{ p.age }}</a>
-                <button mat-icon-button (click)="deletePersonne(p)">
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="deletePersonne(element.action)">
                     <mat-icon>delete</mat-icon>
                 </button>
-            </mat-list-item>
-        </mat-nav-list>
-    
-        <button mat-raised-button (click)="getAllNiveauEtude()">
+                <button mat-icon-button routerLink="/detail/{{element.position}}">
+                    <mat-icon>build</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <div class="outterDiv">
+        <button mat-raised-button (click)="getAllNiveauEtude()" class="buttonAdd">
             Click here to add a new person
         </button>
 
-
-        <div class="champs" *ngIf="niveauEtude">
+        <div class="formAdd" *ngIf="niveauEtude && valide">
             <p>
                 <mat-form-field appearance="legacy">
                     <mat-label>Nom</mat-label>
@@ -98,17 +80,17 @@
                     <mat-label>Niveau</mat-label>
                     <mat-select #niv>
                         <mat-option *ngFor="let n of niveauEtude" [(value)]="n.libelle">
-                          {{n.libelle}}
+                            {{n.libelle}}
                         </mat-option>
-                      </mat-select>
+                    </mat-select>
                     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                 </mat-form-field>
             </p>
             <p>
-                <button mat-fab (click)="add(nom.value, prenom.value, age.value, niv.value); nom.value=''; prenom.value=''; age.value='';niv.value='';">Send</button>
+                <button mat-fab
+                    (click)="add(nom.value, prenom.value, age.value, niv.value); nom.value=''; prenom.value=''; age.value='';niv.value='';">Send</button>
             </p>
         </div>
-
-    </div>-->
-
+    </div>
+</div>
 <!--</div>-->

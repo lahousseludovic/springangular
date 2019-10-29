@@ -52,9 +52,9 @@ export class PersonnesService {
   }
 
   /** DELETE a personne from the server by ID */
-  public deletePersonne(personne: Personne): void {
+  public deletePersonne(personne: Personne): Promise<Personne> {
     const id = personne.id;
-    this.http.delete<Personne>(`${this.urlApi}/delete/${id}`, httpOptions).toPromise();
+    return this.http.delete<Personne>(`${this.urlApi}/delete/${id}`, httpOptions).toPromise();
 
   }
 
