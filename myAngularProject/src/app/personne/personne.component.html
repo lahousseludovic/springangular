@@ -1,61 +1,102 @@
-<div class="outterDiv">
-    <div class="allbutton">
-        <button mat-raised-button (click)="getAllPersonne()">
-            Click here to display all personnes
-        </button>
-    </div>
-    <div *ngIf="personne">
+<div class="example-container mat-elevation-z8 champs">
+    <table mat-table [dataSource]="dataSource">
 
-        <h2>Mes personnes en base sont :</h2>
-      
-        <mat-nav-list class= "maListe">
-            <mat-list-item *ngFor="let p of personne">
-                <a routerLink="/detail/{{ p.id }}">{{ p.nom }} {{ p.prenom }} {{ p.age }}</a>
-                <button mat-icon-button (click)="deletePersonne(p)">
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> Id. </th>
+            <td mat-cell *matCellDef="let element">{{element.position}}</td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nom </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Surname Column -->
+        <ng-container matColumnDef="surname">
+            <th mat-header-cell *matHeaderCellDef> Prénom </th>
+            <td mat-cell *matCellDef="let element"> {{element.surname}} </td>
+        </ng-container>
+
+        <!-- Age Column -->
+        <ng-container matColumnDef="age">
+            <th mat-header-cell *matHeaderCellDef> Age </th>
+            <td mat-cell *matCellDef="let element"> {{element.age}} </td>
+        </ng-container>
+
+        <!-- Level Column -->
+        <ng-container matColumnDef="level">
+            <th mat-header-cell *matHeaderCellDef> Niveau </th>
+            <td mat-cell *matCellDef="let element"> {{element.level}} </td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> Action </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button matTooltip="Modifier" matTooltipPosition="left" routerLink="/detail/{{element.position}}">
+                    <mat-icon>build</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="Supprimer" matTooltipPosition="right" (click)="deletePersonne(element.action)">
                     <mat-icon>delete</mat-icon>
                 </button>
-            </mat-list-item>
-        </mat-nav-list>
-    
-        <button mat-raised-button (click)="valid()">
-            Click here to add a new person
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <div class="outterDiv">
+        <button mat-raised-button matTooltip="Ajouter" matTooltipPosition="above"
+           (click)="getAllNiveauEtude()"
+            class="buttonAdd"
+            [disabled]="valide">
+           Cliquez ici pour ajouter une nouvelle personne
         </button>
 
-
-        <div *ngIf="valide">
+        <div class="formAdd" *ngIf="niveauEtude && valide">
             <p>
                 <mat-form-field appearance="legacy">
                     <mat-label>Nom</mat-label>
-                    <input #personneNom matInput placeholder="">
+                    <input #nom matInput placeholder="" [formControl]="infos" required>
                     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                 </mat-form-field>
             </p>
             <p>
                 <mat-form-field appearance="legacy">
                     <mat-label>Prénom</mat-label>
-                    <input #personnePrenom matInput placeholder="">
+                    <input #prenom matInput placeholder="">
+                    <mat-error *ngIf="infos.invalid">{{getErrorMessage()}}</mat-error>
                     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                 </mat-form-field>
             </p>
             <p>
                 <mat-form-field appearance="legacy">
                     <mat-label>Age</mat-label>
-                    <input #personneAge matInput placeholder="">
+                    <input #age matInput placeholder="">
                     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                 </mat-form-field>
             </p>
             <p>
                 <mat-form-field appearance="legacy">
                     <mat-label>Niveau</mat-label>
-                    <input #personneNiveau matInput placeholder="">
+                    <mat-select #niv>
+                        <mat-option *ngFor="let n of niveauEtude" [(value)]="n.libelle">
+                            {{n.libelle}}
+                        </mat-option>
+                    </mat-select>
                     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                 </mat-form-field>
             </p>
             <p>
-                <button mat-fab (click)="add(personneNom.value, personnePrenom.value, personneAge.value, personneNiveau.value); personneNom.value=''; personnePrenom.value=''; personneAge.value=''; personneNiveau.value='';">Send</button>
+                <button mat-fab color="" (click)="add(nom.value, prenom.value, age.value, niv.value); nom.value=''; prenom.value=''; age.value='';niv.value='';">
+                    Envoyer
+                </button>
+                <button mat-fab color="warn" (click)="valid()" class="buttonRetour">
+                    Annuler
+                </button>
             </p>
         </div>
-
     </div>
-
 </div>

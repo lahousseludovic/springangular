@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PersonnesService } from '../personnes.service';
 import { Location } from '@angular/common';
 import { NiveauEtude } from '../niveauEtude';
+import { NiveauEtudeService } from '../niveau-etude.service';
 
 @Component({
   selector: 'app-detail-personne',
@@ -13,6 +14,7 @@ import { NiveauEtude } from '../niveauEtude';
 export class DetailPersonneComponent implements OnInit {
 
   personne: Personne;
+  niveauEtude: NiveauEtude[];
 
   getPersonne(): void {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -20,18 +22,27 @@ export class DetailPersonneComponent implements OnInit {
     .then(res => 
       {
       this.personne = res;
-      console.log(this.personne);
-      })
+    })
   }
 
-  update(): void {
-    this.personneService.update(this.personne);
+  async getAllNiveauEtude(){
+    const result = await this.niveauEtudeService.getAll();
+    if(result.length !== 0){
+      this.niveauEtude = result;
+    }
   }
 
-  constructor(private route: ActivatedRoute, private personneService: PersonnesService, private location: Location) { }
+  async update(){
+    await this.personneService.update(this.personne);
+    this.goBack();
+  }
+
+  constructor(private route: ActivatedRoute, private personneService: PersonnesService, private location: Location, private niveauEtudeService: NiveauEtudeService) { }
 
   ngOnInit() {
     this.getPersonne();
+    this.getAllNiveauEtude();
+
   }
 
   goBack()  {

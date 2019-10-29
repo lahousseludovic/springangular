@@ -4,6 +4,23 @@
       width: 100%;
   }
 
-  mat-nav-list {
-  
+  .buttonAdd {
+    width: 100%;
   }
+
+  .buttonRetour {
+    margin-left: 1% !important;
+  }
+
+.champs{
+  margin-top: 4%;
+}
+
+.formAdd {
+  margin-top: 2%;
+}
+
+/* Structure */
+table {
+  width: 100%;
+}

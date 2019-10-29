@@ -12,7 +12,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon'
 import { MatInputModule } from '@angular/material/';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
-
+import { MatSelectModule } from '@angular/material';
+import { MatTableModule } from '@angular/material';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,11 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     MatButtonModule,
     MatIconModule,
     MatInputModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatSelectModule,
+    MatTableModule,
+    MatTooltipModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

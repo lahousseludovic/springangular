@@ -44,17 +44,17 @@ export class PersonnesService {
 
   /** CREATE Personne from the server */
   public addPersonne(nom: string, prenom: string, age: number, niveau: string): Promise<Personne>{
-    if(nom.trim() && prenom.trim() && age !== null){
+    //if(nom.trim() && prenom.trim() && age !== null){
       const niveauEtude: NiveauEtude = new NiveauEtude(niveau);
       const personne: Personne =  new Personne(nom,prenom,age,niveauEtude);
       return this.http.post<Personne>(`${this.urlApi}/add`, personne, httpOptions).toPromise();
-    }
+    //}
   }
 
   /** DELETE a personne from the server by ID */
-  public deletePersonne(personne: Personne): void {
+  public deletePersonne(personne: Personne): Promise<Personne> {
     const id = personne.id;
-    this.http.delete<Personne>(`${this.urlApi}/delete/${id}`, httpOptions).toPromise();
+    return this.http.delete<Personne>(`${this.urlApi}/delete/${id}`, httpOptions).toPromise();
 
   }
 

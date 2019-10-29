@@ -1,18 +1,44 @@
-<div *ngIf="personne">
+<div class="outterDiv" *ngIf="personne">
 
-    <h2>Voici les détails de cette personne :</h2>
+    <h2 class="champs">Voici le détail de {{personne.nom}} {{personne.prenom}} :</h2>
         
-        <label>Nom : <input [(ngModel)]="personne.nom" ></label>
-    <br>
-        <label>Prénom : <input [(ngModel)]="personne.prenom" ></label>
-    <br>
-        <label>Age : <input [(ngModel)]="personne.age" ></label>
-    <br>
-        <label>Niveau d'étude : <input [(ngModel)]="personne.niveauEtude.libelle" ></label>
+       <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Nom</mat-label>
+                <input matInput [(ngModel)]="personne.nom">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Prénom</mat-label>
+                <input matInput [(ngModel)]="personne.prenom">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Age</mat-label>
+                <input matInput [(ngModel)]="personne.age">
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            </mat-form-field>
+        </p>
+        <p>
+            <mat-form-field appearance="legacy">
+                <mat-label>Niveau</mat-label>
+                <mat-select [(ngModel)]="personne.niveauEtude.libelle">
+                    <mat-option *ngFor="let n of niveauEtude" [(value)]="n.libelle">
+                      {{n.libelle}}
+                    </mat-option>
+                  </mat-select>
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            </mat-form-field>
+        </p>
+
         <div>
             <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-                <mat-button-toggle (click)="update(); goBack()">Valid change</mat-button-toggle>
-                <mat-button-toggle (click)="goBack()">Go Back</mat-button-toggle>
+                <mat-button-toggle (click)="update()">Valider</mat-button-toggle>
+                <mat-button-toggle (click)="goBack()">Retour</mat-button-toggle>
             </mat-button-toggle-group> 
         </div>
 </div>
