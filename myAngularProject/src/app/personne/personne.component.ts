@@ -66,6 +66,14 @@ export class PersonneComponent implements OnInit {
     }
   }
 
+  private valid(){
+    if(this.valid){
+      this.valide = false;
+    }else{
+      this.valide = true;
+    }
+  }
+
   constructor(private personneService: PersonnesService, private niveauEtudeService: NiveauEtudeService) { }
 
   ngOnInit() {
