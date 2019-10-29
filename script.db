@@ -29,5 +29,7 @@ INSERT INTO personne(prenom, nom, age, id_niveau) VALUES ('Ludovic','Lahousse', 
 INSERT INTO personne(prenom, nom, age, id_niveau) VALUES ('Antoine','Jouve', 24,1);
 INSERT INTO personne(prenom, nom, age, id_niveau) VALUES ('Abbas','Attaf', 25,2);
 INSERT INTO personne(prenom, nom, age, id_niveau) VALUES ('Arthur','Brandao', 23,5);
+INSERT INTO personne(prenom, nom, age, id_niveau) VALUES ('Pierre','Delgrange', 32,2);
+INSERT INTO personne(prenom, nom, age, id_niveau) VALUES ('Nagi','Karaouzene',26,2);
 
 CREATE RULE rule_delete as on delete to niveau_etude do also update personne set id_niveau=(select id from niveau_etude where libelle='Aucun') where id_niveau = OlD.id;

@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSelectModule } from '@angular/material';
 import { MatTableModule } from '@angular/material';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { MatTableModule } from '@angular/material';
     MatInputModule,
     MatButtonToggleModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

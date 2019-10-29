@@ -32,8 +32,9 @@ export class DetailPersonneComponent implements OnInit {
     }
   }
 
-  update(): void {
-    this.personneService.update(this.personne);
+  async update(){
+    await this.personneService.update(this.personne);
+    this.goBack();
   }
 
   constructor(private route: ActivatedRoute, private personneService: PersonnesService, private location: Location, private niveauEtudeService: NiveauEtudeService) { }
