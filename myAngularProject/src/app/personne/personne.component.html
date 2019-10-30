@@ -59,22 +59,24 @@
             <p>
                 <mat-form-field appearance="legacy">
                     <mat-label>Nom</mat-label>
-                    <input #nom matInput placeholder="" [formControl]="infos" required>
+                    <input #nom matInput placeholder="" [formControl]="form.controls.name" required>
+                    <mat-error *ngIf="form.controls.name.invalid">{{getErrorMessageName()}}</mat-error>
                     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                 </mat-form-field>
             </p>
             <p>
                 <mat-form-field appearance="legacy">
                     <mat-label>Prénom</mat-label>
-                    <input #prenom matInput placeholder="">
-                    <mat-error *ngIf="infos.invalid">{{getErrorMessage()}}</mat-error>
+                    <input #prenom matInput placeholder="" [formControl]="form.controls.surname" required>
+                    <mat-error *ngIf="form.controls.surname.invalid">{{getErrorMessageSurname()}}</mat-error>
                     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                 </mat-form-field>
             </p>
             <p>
                 <mat-form-field appearance="legacy">
                     <mat-label>Age</mat-label>
-                    <input #age matInput placeholder="">
+                    <input #age matInput placeholder="" [formControl]="form.controls.age" required>
+                    <mat-error *ngIf="form.controls.age.invalid">{{getErrorMessageAge()}}</mat-error>
                     <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
                 </mat-form-field>
             </p>
@@ -90,10 +92,10 @@
                 </mat-form-field>
             </p>
             <p>
-                <button mat-fab color="" (click)="add(nom.value, prenom.value, age.value, niv.value); nom.value=''; prenom.value=''; age.value='';niv.value='';">
+                <button mat-fab color="" [disabled]="!form.valid" (click)="add(nom.value, prenom.value, age.value, niv.value); nom.value=''; prenom.value=''; age.value='';niv.value='';">
                     Envoyer
                 </button>
-                <button mat-fab color="warn" (click)="valid()" class="buttonRetour">
+                <button mat-fab color="warn" (click)="valid(); form.controls.name.value=''; form.controls.surname.value=''; form.controls.age.value='';" class="buttonRetour">
                     Annuler
                 </button>
             </p>

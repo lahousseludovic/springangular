@@ -4,7 +4,7 @@ import { PersonnesService } from '../personnes.service';
 import { NiveauEtude } from '../niveauEtude';
 import { NiveauEtudeService } from '../niveau-etude.service';
 import {MatTableDataSource} from '@angular/material/table';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl, Validators, FormGroup} from '@angular/forms';
 
 export interface PeriodiqueElement {
   position: Number;
@@ -31,10 +31,23 @@ export class PersonneComponent implements OnInit {
   niveauEtude: NiveauEtude[];
   public valide: boolean = false;
 
-  infos = new FormControl('', [Validators.required]);
+  form= new FormGroup({
+      name: new FormControl(null, [Validators.required]),
+      surname: new FormControl(null, [Validators.required]),
+      age: new FormControl(null, [Validators.required, Validators.pattern('[1-9]{2}')])
+  });
 
-  getErrorMessage() {
-    return this.infos.hasError('required') ? 'You must enter a value' :'';
+  getErrorMessageName() {
+    return this.form.controls.name.hasError('required') ? 'Vous devez remplir ce champ' :'';
+  }
+
+  getErrorMessageSurname() {
+    return this.form.controls.surname.hasError('required') ? 'Vous devez remplir ce champ' :'';
+  }
+
+  getErrorMessageAge() {
+    return this.form.controls.age.hasError('required') ? 'Vous devez remplir ce champ' :'';
+    /**this.form.controls.age.hasError('age') ? 'format non valide' : '';*/
   }
 
   private async getAllPersonne() {
@@ -64,13 +77,15 @@ export class PersonneComponent implements OnInit {
 
   async add(nom: string, prenom: string, age: number, niveauEtude: string){
     this.valide = false;
-    if(nom.trim() && prenom.trim() && age.toString() !== "0" && age.toString() !== ""){
+    if(niveauEtude == null){
+        niveauEtude = 'Aucun';
+    }
       this.personne = [];
       const result = await this.personneService.addPersonne(nom, prenom,age, niveauEtude);
       if(result.id !== null){
        this.getAllPersonne();
       }
-    }
+    
   }
 
   private valid(){
@@ -79,6 +94,7 @@ export class PersonneComponent implements OnInit {
     }else{
       this.valide = true;
     }
+    this.form.reset();
   }
 
   constructor(private personneService: PersonnesService, private niveauEtudeService: NiveauEtudeService) { }
