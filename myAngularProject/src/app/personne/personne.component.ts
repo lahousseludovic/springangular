@@ -74,6 +74,8 @@ export class PersonneComponent implements OnInit {
       ELEMENT_DATA.push({position: p.id, name: p.nom, surname: p.prenom, age: p.age, level: p.niveauEtude.libelle, action: p });
     }
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+   }else{
+    this.dataSource = new MatTableDataSource(null);
    }
   }
 
