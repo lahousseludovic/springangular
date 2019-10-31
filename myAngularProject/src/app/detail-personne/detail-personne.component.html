@@ -5,21 +5,24 @@
        <p>
             <mat-form-field appearance="legacy">
                 <mat-label>Nom</mat-label>
-                <input matInput [(ngModel)]="personne.nom">
+                <input matInput [(ngModel)]="personne.nom" [formControl]="form.controls.name" required>
+                <mat-error *ngIf="form.controls.name.invalid">{{getErrorMessageName()}}</mat-error>
                 <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
             </mat-form-field>
         </p>
         <p>
             <mat-form-field appearance="legacy">
                 <mat-label>Prénom</mat-label>
-                <input matInput [(ngModel)]="personne.prenom">
+                <input matInput [(ngModel)]="personne.prenom" [formControl]="form.controls.surname" required>
+                <mat-error *ngIf="form.controls.surname.invalid">{{getErrorMessageSurname()}}</mat-error>
                 <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
             </mat-form-field>
         </p>
         <p>
             <mat-form-field appearance="legacy">
                 <mat-label>Age</mat-label>
-                <input matInput [(ngModel)]="personne.age">
+                <input matInput [(ngModel)]="personne.age" [formControl]="form.controls.age" required>
+                <mat-error *ngIf="form.controls.age.invalid">{{getErrorMessageAge()}}</mat-error>
                 <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
             </mat-form-field>
         </p>
@@ -36,9 +39,11 @@
         </p>
 
         <div>
-            <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-                <mat-button-toggle (click)="update()">Valider</mat-button-toggle>
-                <mat-button-toggle (click)="goBack()">Retour</mat-button-toggle>
-            </mat-button-toggle-group> 
+            <button mat-fab color="" [disabled]="!form.valid" (click)="update()">
+                Valider
+            </button>
+            <button mat-fab color="warn" (click)="goBack()" class="buttonRetour">
+                Annuler
+            </button>
         </div>
 </div>

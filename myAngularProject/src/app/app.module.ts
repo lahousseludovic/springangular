@@ -37,7 +37,7 @@ import { ReactiveFormsModule} from '@angular/forms';
     MatSelectModule,
     MatTableModule,
     MatTooltipModule,
-    ReactiveFormsModule
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})
   ],
   providers: [],
   bootstrap: [AppComponent]

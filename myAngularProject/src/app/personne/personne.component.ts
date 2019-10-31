@@ -32,22 +32,37 @@ export class PersonneComponent implements OnInit {
   public valide: boolean = false;
 
   form= new FormGroup({
-      name: new FormControl(null, [Validators.required]),
-      surname: new FormControl(null, [Validators.required]),
-      age: new FormControl(null, [Validators.required, Validators.pattern('[1-9]{2}')])
+      name: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z]*')]),
+      surname: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z]*')]),
+      age: new FormControl(null, [Validators.required, Validators.pattern('[0-9]{2}'), this.ageDomainValidator])
   });
 
   getErrorMessageName() {
-    return this.form.controls.name.hasError('required') ? 'Vous devez remplir ce champ' :'';
+    return this.form.controls.name.hasError('required') ? 'Vous devez remplir ce champ' : 
+    this.form.controls.name.hasError('pattern') ? 'Format invalide' : '';
   }
 
   getErrorMessageSurname() {
-    return this.form.controls.surname.hasError('required') ? 'Vous devez remplir ce champ' :'';
+    return this.form.controls.surname.hasError('required') ? 'Vous devez remplir ce champ' :
+    this.form.controls.surname.hasError('pattern') ? 'Format invalide' : '';
   }
 
   getErrorMessageAge() {
-    return this.form.controls.age.hasError('required') ? 'Vous devez remplir ce champ' :'';
-    /**this.form.controls.age.hasError('age') ? 'format non valide' : '';*/
+    return this.form.controls.age.hasError('required') ? 'Vous devez remplir ce champ' :
+    this.form.controls.age.hasError('ageDomain') ? 'L\'âge doit ếtre >= 18' : 
+    this.form.controls.age.hasError('pattern') ? 'Format invalide' : '';
+  }
+
+  ageDomainValidator(control: FormControl) {
+   const age:number = control.value;
+   if(age < 18){
+     return {
+       ageDomain:{
+         parsedDomain: ''
+       }
+     }
+   }
+      return null;
   }
 
   private async getAllPersonne() {
