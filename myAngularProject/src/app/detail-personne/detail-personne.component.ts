@@ -5,6 +5,7 @@ import { PersonnesService } from '../personnes.service';
 import { Location } from '@angular/common';
 import { NiveauEtude } from '../niveauEtude';
 import { NiveauEtudeService } from '../niveau-etude.service';
+import {FormControl, Validators, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-detail-personne',
@@ -15,6 +16,40 @@ export class DetailPersonneComponent implements OnInit {
 
   personne: Personne;
   niveauEtude: NiveauEtude[];
+
+  form= new FormGroup({
+    name: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z]*')]),
+    surname: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z]*')]),
+    age: new FormControl(null, [Validators.required, Validators.pattern('[0-9]{2}'), this.ageDomainValidator])
+});
+
+getErrorMessageName() {
+  return this.form.controls.name.hasError('required') ? 'Vous devez remplir ce champ' : 
+  this.form.controls.name.hasError('pattern') ? 'Format invalide' : '';
+}
+
+getErrorMessageSurname() {
+  return this.form.controls.surname.hasError('required') ? 'Vous devez remplir ce champ' :
+  this.form.controls.surname.hasError('pattern') ? 'Format invalide' : '';
+}
+
+getErrorMessageAge() {
+  return this.form.controls.age.hasError('required') ? 'Vous devez remplir ce champ' :
+  this.form.controls.age.hasError('ageDomain') ? 'L\'âge doit ếtre >= 18' : 
+  this.form.controls.age.hasError('pattern') ? 'Format invalide' : '';
+}
+
+ageDomainValidator(control: FormControl) {
+ const age:number = control.value;
+ if(age < 18){
+   return {
+     ageDomain:{
+       parsedDomain: ''
+     }
+   }
+ }
+    return null;
+}
 
   getPersonne(): void {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -42,7 +77,7 @@ export class DetailPersonneComponent implements OnInit {
   ngOnInit() {
     this.getPersonne();
     this.getAllNiveauEtude();
-
+    this.form.reset();
   }
 
   goBack()  {
