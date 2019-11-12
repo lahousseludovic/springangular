@@ -8,7 +8,6 @@ import javax.validation.constraints.NotNull;
  */
 
 @Entity
-
 public class Personne {
 
     @Id

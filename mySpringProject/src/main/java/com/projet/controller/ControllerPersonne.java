@@ -18,23 +18,23 @@ public class ControllerPersonne {
     private PersonneBusiness personneBusiness;
 
     @GetMapping("")
-    public List<PersonneDTO> getAll(){
-      return personneBusiness.getAll();
+    public List<PersonneDTO> getAll() {
+        return personneBusiness.getAll();
     }
 
     @GetMapping("/{id}")
-    public PersonneDTO getById(@PathVariable("id") @NotNull Long id ){
-        PersonneDTO personneDTO = personneBusiness.findById(id);
-        return personneDTO;
+    public PersonneDTO getById(@PathVariable("id") @NotNull Long id) {
+        return personneBusiness.findById(id);
     }
 
     @GetMapping("/etude/{niveau_etude}")
-    public Collection<PersonneDTO> getByNiveauEtude(@PathVariable("niveau_etude") @NotNull String niveau_etude ){
+    public Collection<PersonneDTO> getByNiveauEtude(@PathVariable("niveau_etude") @NotNull String niveau_etude) {
         return personneBusiness.findByNiveauEtude(niveau_etude);
     }
 
+
     @PutMapping("/update")
-    public PersonneDTO update(@RequestBody PersonneDTO personneDTO){
+    public PersonneDTO update(@RequestBody PersonneDTO personneDTO) {
 
         return personneBusiness.update(personneDTO);
     }
