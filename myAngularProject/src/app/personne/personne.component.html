@@ -38,7 +38,7 @@
                 <button mat-icon-button matTooltip="Modifier" matTooltipPosition="left" routerLink="/detail/{{element.position}}">
                     <mat-icon>build</mat-icon>
                 </button>
-                <button mat-icon-button matTooltip="Supprimer" matTooltipPosition="right" (click)="deletePersonne(element.action)">
+                <button mat-icon-button matTooltip="Supprimer" matTooltipPosition="right" (click)="openConfirmationDialog()">
                     <mat-icon>delete</mat-icon>
                 </button>
             </td>

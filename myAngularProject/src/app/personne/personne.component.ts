@@ -3,8 +3,9 @@ import { Personne } from '../personne';
 import { PersonnesService } from '../personnes.service';
 import { NiveauEtude } from '../niveauEtude';
 import { NiveauEtudeService } from '../niveau-etude.service';
-import {MatTableDataSource} from '@angular/material/table';
-import {FormControl, Validators, FormGroup} from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { ConfirmationDialogService } from '../confirmation-dialog.service';
 
 export interface PeriodiqueElement {
   position: Number;
@@ -114,7 +115,13 @@ export class PersonneComponent implements OnInit {
     this.form.reset();
   }
 
-  constructor(private personneService: PersonnesService, private niveauEtudeService: NiveauEtudeService) { }
+  public openConfirmationDialog() {
+    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to ... ?')
+    .then((confirmed) => console.log('User confirmed:', confirmed))
+    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+  }
+
+  constructor(private personneService: PersonnesService, private niveauEtudeService: NiveauEtudeService, private confirmationDialogService: ConfirmationDialogService) { }
 
   ngOnInit() {
     this.getAllPersonne();

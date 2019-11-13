@@ -16,12 +16,16 @@ import { MatSelectModule } from '@angular/material';
 import { MatTableModule } from '@angular/material';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ReactiveFormsModule} from '@angular/forms';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
+import { ConfirmationDialogService } from './confirmation-dialog.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
     AppComponent,
     PersonneComponent,
-    DetailPersonneComponent
+    DetailPersonneComponent,
+    ConfirmationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +41,11 @@ import { ReactiveFormsModule} from '@angular/forms';
     MatSelectModule,
     MatTableModule,
     MatTooltipModule,
-    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'}),
+    NgbModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ConfirmationDialogService],
+  bootstrap: [AppComponent],
+  entryComponents: [ConfirmationDialogComponent]
 })
 export class AppModule { }
