@@ -15,6 +15,8 @@ import {FormControl, Validators, FormGroup} from '@angular/forms';
 export class DetailPersonneComponent implements OnInit {
 
   personne: Personne;
+  nom: string;
+  prenom: string;
   niveauEtude: NiveauEtude[];
 
   form= new FormGroup({
@@ -53,10 +55,13 @@ ageDomainValidator(control: FormControl) {
 
   getPersonne(): void {
     const id = +this.route.snapshot.paramMap.get('id');
+    
     this.personneService.getPersonneById(id)
     .then(res => 
       {
       this.personne = res;
+      this.nom = this.personne.nom;
+      this.prenom = this.personne.prenom;
     })
   }
 

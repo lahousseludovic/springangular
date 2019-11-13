@@ -24,14 +24,10 @@ public class NiveauEtude {
     }
 
     public String getLibelle() {
-        libelle = libelle.toLowerCase();
-        libelle = libelle.replaceFirst(libelle.charAt(0)+"", (libelle.charAt(0)+"").toUpperCase());
-
         return libelle;
     }
 
     public void setLibelle(String libelle) {
-        libelle = libelle.toLowerCase();
-        this.libelle = libelle.replaceFirst(libelle.charAt(0)+"", (libelle.charAt(0)+"").toUpperCase());
+        this.libelle = libelle;
     }
 }

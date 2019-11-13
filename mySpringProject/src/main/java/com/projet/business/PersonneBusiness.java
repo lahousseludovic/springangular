@@ -65,8 +65,7 @@ public class PersonneBusiness {
             return niveauEtudeRepository.findByLibelle("Aucun");
         }
 
-        String libelle = personneDTO.getNiveau_etude().getLibelle().toLowerCase();
-        libelle = libelle.replaceFirst(libelle.charAt(0)+"", (libelle.charAt(0)+"").toUpperCase());
+        String libelle = personneDTO.getNiveau_etude().getLibelle();
         NiveauEtude niveauEtude = niveauEtudeRepository.findByLibelle(libelle);
         if (niveauEtude != null) {
             return niveauEtude;

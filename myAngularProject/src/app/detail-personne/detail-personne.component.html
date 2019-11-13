@@ -1,11 +1,11 @@
 <div class="outterDiv" *ngIf="personne">
 
-    <h2 class="champs">Voici le détail de {{personne.nom}} {{personne.prenom}} :</h2>
+    <h2 class="champs">Voici le détail de {{nom}} {{prenom}} :</h2>
         
        <p>
             <mat-form-field appearance="legacy">
                 <mat-label>Nom</mat-label>
-                <input matInput [(ngModel)]="personne.nom" [formControl]="form.controls.name" required>
+                <input matInput [(ngModel)] ="personne.nom" [formControl]="form.controls.name" required>
                 <mat-error *ngIf="form.controls.name.invalid">{{getErrorMessageName()}}</mat-error>
                 <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
             </mat-form-field>
