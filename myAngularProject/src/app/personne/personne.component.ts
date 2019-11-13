@@ -115,9 +115,9 @@ export class PersonneComponent implements OnInit {
     this.form.reset();
   }
 
-  public openConfirmationDialog() {
-    this.confirmationDialogService.confirm('Please confirm..', 'Do you really want to ... ?')
-    .then((confirmed) => console.log('User confirmed:', confirmed))
+  public openConfirmationDialog(personne: Personne) {
+    this.confirmationDialogService.confirm('Voulez vous vraiment supprimer cette personne ?', personne.nom)
+    .then((confirmed) => confirmed == true?this.deletePersonne(personne):console.log(confirmed))
     .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
   }
 
