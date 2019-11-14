@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { NiveauEtude } from '../niveauEtude';
 import { NiveauEtudeService } from '../niveau-etude.service';
 import {FormControl, Validators, FormGroup} from '@angular/forms';
+import {ConfirmationDialogService } from '../confirmation-dialog.service';
 
 @Component({
   selector: 'app-detail-personne',
@@ -77,7 +78,7 @@ ageDomainValidator(control: FormControl) {
     this.goBack();
   }
 
-  constructor(private route: ActivatedRoute, private personneService: PersonnesService, private location: Location, private niveauEtudeService: NiveauEtudeService) { }
+  constructor(private route: ActivatedRoute, private personneService: PersonnesService, private location: Location, private niveauEtudeService: NiveauEtudeService, private confirmationDialogService: ConfirmationDialogService) { }
 
   ngOnInit() {
     this.getPersonne();
@@ -87,6 +88,12 @@ ageDomainValidator(control: FormControl) {
 
   goBack()  {
     this.location.back();
+  }
+
+  public openConfirmationDialog() {
+    this.confirmationDialogService.confirm('Confirmer la modification de :', "\"" + this.nom + " " + this.prenom + "\"")
+    .then((confirmed) => confirmed == true? (this.update(), console.log("l'utilisateur à confirmer la modification")) : console.log("l'utilisateur à appuyer sur cancel"))
+    .catch(() => console.log("l'utilisateur à quitter la boite de dialog en utilsant soit (ESC, l'icon de croix ou en cliquant à l'extérieur du dialog)"));
   }
 
 }
