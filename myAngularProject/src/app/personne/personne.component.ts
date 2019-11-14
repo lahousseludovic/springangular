@@ -116,10 +116,11 @@ export class PersonneComponent implements OnInit {
   }
 
   public openConfirmationDialog(personne: Personne) {
-    this.confirmationDialogService.confirm('Voulez vous vraiment supprimer cette personne ?', personne.nom)
-    .then((confirmed) => confirmed == true?this.deletePersonne(personne):console.log(confirmed))
-    .catch(() => console.log('User dismissed the dialog (e.g., by using ESC, clicking the cross icon, or clicking outside the dialog)'));
+    this.confirmationDialogService.confirm('Confirmer la suppression de :', personne.nom + " " + personne.prenom)
+    .then((confirmed) => confirmed == true? (this.deletePersonne(personne), console.log("l'utilisateur à confirmer la suppression")) : console.log("l'utilisateur à appuyer sur cancel"))
+    .catch(() => console.log("l'utilisateur à quitter la boite de dialog en utilsant soit (ESC, l'icon de croix ou en cliquant à l'extérieur du dialog)"));
   }
+
 
   constructor(private personneService: PersonnesService, private niveauEtudeService: NiveauEtudeService, private confirmationDialogService: ConfirmationDialogService) { }
 
